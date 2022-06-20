@@ -21,6 +21,10 @@ exciting features such as *integration with scRNA-seq data*\!
 You can install RUHi from this github repo with:
 
 ``` r
+#for the last released version:
+devtools::install_github("cembrowskilab/RUHi")
+
+#for the current developers version:
 devtools::install_github("kaitsull/RUHi")
 ```
 
