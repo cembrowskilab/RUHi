@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# RUHi ![](https://emojis.slackmojis.com/emojis/images/1563480763/5999/meow_party.gif?1563480763)
+# ![](https://emojis.slackmojis.com/emojis/images/1563480763/5999/meow_party.gif?1563480763) RUHi 
 
 #### R-based Utilities for HiPlex
 
