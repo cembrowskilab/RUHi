@@ -32,35 +32,7 @@ Once installed, load the package normally:
 
 ``` r
 library(RUHi)
-```
-
-## Function List
-
-Currently the package has 2 functions:
-
-### `ruMAKE`
-
-  - takes quantified tables from FIJI and combines them into a table for
-    analysis
-
-### `goFISH`
-
-  - launches the gone mFISHing shiny app (**NOTE**: must use table
-    generated via ruMake)
-
-##### Plus original functions by Mark Cembrowski:
-
-`loadData`, `plotCluster`, `plotGene`, `plotViolin`
-
-You can also access function documentation via:
-
-``` r
-help(goFISH())
-
-#or
-
-?goFISH()
-```
+```  
 
 ## Test Code
 
@@ -99,4 +71,33 @@ head(mydata)
 #   ?goFISH   (in the console)
 #PLZ NOTE: the dancing cat means its loading - it can be slow at first!
 goFISH(mydata)
-```
+```  
+  
+    
+ ## Function List
+
+Currently the package has 2 functions:
+
+### `ruMAKE`
+
+  - takes quantified tables from FIJI and combines them into a table for
+    analysis
+
+### `goFISH`
+
+  - launches the gone mFISHing shiny app (**NOTE**: must use table
+    generated via ruMake)
+
+##### Plus original functions by Mark Cembrowski:
+
+`loadData`, `plotCluster`, `plotGene`, `plotViolin`
+
+You can also access function documentation via:
+
+``` r
+help(goFISH())
+
+#or
+
+?goFISH()
+```   
