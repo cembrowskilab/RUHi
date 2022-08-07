@@ -24,12 +24,14 @@ exciting features such as *integration with scRNA-seq data*!
 
 ## Installation
 
-This repo contains the developer’s version of RUHi.  
+This repo contains the most recent version of RUHi.  
 You can install RUHi from this github repo with:
 
 ``` r
-devtools::install_github("kaitsull/RUHi")
+devtools::install_github("cembrowskilab/RUHi")
 ```
+
+See [@kaitsull](https://github.com/kaitsull/RUHi)'s repo for the developer's version.
 
 Once installed, load the package normally:
 
@@ -43,8 +45,8 @@ If you are updating to a newer version of the repo:
 #remove old version
 remove.packages(RUHi)  
 
-#reinstall from here or from the cembrowskilab/RUHi github  
-devtools::install_github("kaitsull/RUHi")  
+#reinstall from here or from the kaitsull/RUHi github  
+devtools::install_github("cembrowskilab/RUHi")  
 ```
 
 ## Tutorial
