@@ -31,6 +31,9 @@ goFISH <- function(mFISH, filter.by=NA, k=NA){
   if(is.na(filter.by)){
     filter.by <- filgenes[1]
   }
+  else{
+    filter.by <- filter.by
+  }
 
   if(is.na(k)){
     inclus <- 3
@@ -313,7 +316,7 @@ goFISH <- function(mFISH, filter.by=NA, k=NA){
                       umap_nn = input$nn, umap_mindist = input$mindist,
                       umap_metric = input$metric, hclust_k = input$nclus,
                       hclust_metric = 'manhattan', pca = pca(),
-                      npc = input$npcs, umap = mu(), cluster = mc)
+                      npc = input$npcs, umap = mu(), cluster = mc())
 
        if(input$out){
          attribs$remove.outliers <- c(1, length(mygenes()))
@@ -359,9 +362,6 @@ goFISH <- function(mFISH, filter.by=NA, k=NA){
         if(input$mg != "None"){
           l <- length(input$mg)
           for(i in 1:l){
-            if(input$mg == "None"){
-              next
-            }
             mf <- dplyr::filter(mf, !!rlang::sym(input$mg[i]) > input$filter)
             mf <- dplyr::select(mf, -(!!rlang::sym(input$mg[i])))
           }

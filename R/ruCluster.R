@@ -22,7 +22,7 @@ ruCluster <- function(mFISH, k, dmetric = "euclidean", p = 2){
                       method = 'ward.D2')
   #cut tree
   clus <- stats::cutree(hc, k=k)
-  filt <- data.frame(cluster = clus, id = mFISH@filteredData$id)
+  filt <- data.frame(cluster = as.factor(clus), id = mFISH@filteredData$id)
 
   #update object
   #save the id-cluster combo
