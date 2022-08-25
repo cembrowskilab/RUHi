@@ -56,7 +56,7 @@ If you are updating to a newer version of the repo:
 
 ``` r
 #remove old version
-remove.packages(RUHi)  
+remove.packages('RUHi')  
 
 #reinstall from here or from the kaitsull/RUHi github  
 devtools::install_github("cembrowskilab/RUHi")  
