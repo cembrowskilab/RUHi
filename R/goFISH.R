@@ -298,7 +298,7 @@ goFISH <- function(mFISH, filter.by=NA, k=NA){
 #reactive gene name list
     mygenes <- shiny::reactive({
       mygenes <- filgenes[-1]
-      if(input$mg %in% mygenes){
+      if(input$mg[1] %in% mygenes){
         colNum <- match(input$mg, mygenes)
         mygenes <- mygenes[-colNum]
       }
@@ -359,7 +359,7 @@ goFISH <- function(mFISH, filter.by=NA, k=NA){
         mf <- raw
 
         #for loop filtering out all genes
-        if(input$mg != "None"){
+        if(input$mg[1] != "None"){
           l <- length(input$mg)
           for(i in 1:l){
             mf <- dplyr::filter(mf, !!rlang::sym(input$mg[i]) > input$filter)
