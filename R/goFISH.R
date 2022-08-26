@@ -28,11 +28,11 @@ goFISH <- function(mFISH, filter.by=NA, k=NA){
   #meta data
   meta <- mFISH@metaData
 
-  if(is.na(filter.by)){
-    filter.by <- filgenes[1]
-  }
-  else{
-    filter.by <- filter.by
+  #remove warnings
+  if(length(filter.by)==1){
+    if(is.na(filter.by[1])){
+      filter.by <- filgenes[1]
+    }
   }
 
   if(is.na(k)){
