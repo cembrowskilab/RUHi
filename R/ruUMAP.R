@@ -14,12 +14,13 @@
 #' @export
 #'
 
-ruUMAP <- function(mFISH, metric="manhattan", nn=15, min.dist=0.1, npc=8){
-  #warning if no pca ran
-  if(suppressWarnings(is.na(mFISH@attributes$pca))){
-    warning("Please run `ruProcess()` prior to running UMAP dimensionality reduction.")
-  }
-  else{
+ruUMAP <- function(mFISH, metric="manhattan", nn=15, min.dist=0.1, npc=1){
+    #auto generate npcs
+    if(npc <= 1){
+      l <- length(names(mFISH@filteredData))
+      npc <- (l/2)-1
+    }
+
     #run on PCA
     df <- mFISH@attributes$pca
 
@@ -45,5 +46,5 @@ ruUMAP <- function(mFISH, metric="manhattan", nn=15, min.dist=0.1, npc=8){
 
     #return object
     mFISH
-  }
+
 }

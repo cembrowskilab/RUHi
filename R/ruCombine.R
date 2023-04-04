@@ -19,7 +19,7 @@ ruCombine <- function(dfs) {
     cur <- dplyr::mutate(cur, id=1:nrow(cur))
 
     #subsequent
-    nxt <- dfs[i+1][[1]]
+    nxt <- dfs[2][[1]]
 
     #last id #
     lst <- nrow(cur)
@@ -27,10 +27,6 @@ ruCombine <- function(dfs) {
     #iterate through
     for(i in 1:length(dfs)-1){
       print(paste("Table: ", i+1, sep=""))
-      #warning if cannot combine tables
-      if(suppressWarnings(!(names(cur) %in% names(nxt)))){
-        warning(paste("Column names of tables ", i, " and ", i+1, "are not the same.", sep=""))
-      }
 
       #change id numbers for subsequent round
       nxt <- dfs[i+1][[1]]

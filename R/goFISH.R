@@ -110,7 +110,7 @@ goFISH <- function(mFISH, filter.by=NA, k=NA){
                           "Number of Principle Components to use:",
                           min = 3,
                           max = length(filgenes)-1,
-                          value = length(filgenes)-3,
+                          value = (length(filgenes)/2)-1,
                           step = 1
                         ))
                       ),

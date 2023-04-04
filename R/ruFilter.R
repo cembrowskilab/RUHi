@@ -16,11 +16,6 @@ ruFilter <- function(mFISH, threshold = 0.1, filter.by = NA, exclude = NA){
   #save raw data
   df <- mFISH@rawData
   #filter by list
-  #warning if nothing to filter by
-  if(is.na(filter.by[1]) && is.na(exclude[1])){
-    warning("Please select a gene or vector of genes to filter the data by or exclude from analysis!")
-  }
-  else{
     #only run if length > 1
     l <- length(filter.by)
     if(!is.na(filter.by[1])){
@@ -75,8 +70,6 @@ ruFilter <- function(mFISH, threshold = 0.1, filter.by = NA, exclude = NA){
     md <- mFISH@metaData
     mFISH@metaData <- dplyr::mutate(md, fil = b$fil)
 
-
-  }
   #return mFISH object
   mFISH
 }

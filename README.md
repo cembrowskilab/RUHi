@@ -17,9 +17,16 @@ exciting features such as *integration with scRNA-seq data*!
 
 ## Table of Contents:
 
-1.  [Installation](#installation)  
-2.  [Tutorial](#tutorial)
-3.  [Function List](#functions)
+i.      [Installation](#installation)  
+ii.     [Tutorial](#tutorial)  
+        -       [1. Setting Up](#setting-up)  
+        -       [2. Reading the Data](#reading-the-data)  
+        -       [3. Create an mFISH Object](#create-an-mfish-object)  
+        -       [4. Go FISH!](#preview-your-analysis)  
+        -       [5. Run the Analysis](#run-the-analysis)  
+        -       [6. Visualizing](#plotting)   
+        -      [7. Saving your Data](#object-storage)  
+iii.    [Function List](#functions)  
 
 ## Installation
 
@@ -64,109 +71,67 @@ devtools::install_github("cembrowskilab/RUHi")
 
 ## Tutorial
 
-### 1. Setting up
+### 1. Setting Up
 
-We will be using a single section dataset from [our eLife
-paper](https://elifesciences.org/articles/68967)  
+We will be using a single section dataset from [our 2021 eLife
+paper](https://elifesciences.org/articles/68967).  
 Raw files used for this analysis are directly from FIJI Quantification
 and can be found in [this
 repo](https://github.com/kaitsull/RUHi/tree/master/inst/extdata).
 
 ``` r
-# Kaitlin Sullivan 2022
-
-#after following the installation instructions...
 #load package
 library(RUHi)
-#> Registered S3 method overwritten by 'spatstat.geom':
-#>   method     from
-#>   print.boxx cli
-
-#set the working directory using absolute path or here() function
-#or simply provide full path in function
-
-#check out what a function does via:
-#   ?ruMake   (in the console)
 ```
 
-### 2. Read and combine files
+### 2. Reading the Data
+
+#### 2a. Read Individual Images
 
 We will use `ruRead()` to read multiple FIJI Quantification files into a
 single data frame. Then we can optionally use `ruCombine()` to
-concatenate multiple data frames from seperate experiments.
-
+concatenate multiple data frames from separate experiments.  
+  
+First read your quantified gene tables from your `analyzedTables` folder into a single data frame.  
+  
+When using `ruRead` please specify:  
+    -   `region`: where is this image? (eg: "intermediate_claustrum")  
+    -   `anum`: animal number  
+    -   `section`: a unique identifying number for your image  
+   
 ``` r
-####### STEP 1a: READING FILES FROM FIJI QUANTIFICATION #########
-#here we are using an example dataset from our 2021 eLife paper - https://elifesciences.org/articles/68967
-
+#create a data frame
 mydata <- ruRead("~/RUHi/inst/extdata", region = "intermediate", anum = "123456", section = "1")
-#> [1] "The following files will be quantified:"
-#>  [1] "R1_488_Cdh9.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"   
-#>  [2] "R1_550_Ctgf.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"   
-#>  [3] "R1_647_Slc17a6.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"
-#>  [4] "R1_750_Lxn.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"    
-#>  [5] "R2_488_Slc30a3.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"
-#>  [6] "R2_550_Gfra1.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"  
-#>  [7] "R2_647_Spon1.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"  
-#>  [8] "R2_750_Gnb4.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"   
-#>  [9] "R3_488_Nnat.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"   
-#> [10] "R3_550_Synpr.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"  
-#> [11] "R3_647_Pcp4.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"   
-#> [12] "R3_750_Slc17a7.tif_registered.tif_rigid_and_nonlinear.tif_quantification.csv"
 
 #make sure all your genes are names correctly before continuing
-#you should have columns named X,Y,id,region,section,anum and all of your genes
+#you should have columns named:
+#X,Y,id,region,section,anum and all of your genes
 head(mydata)
-#>         X     Y      Cdh9 Ctgf    Slc17a6       Lxn    Slc30a3     Gfra1
-#> 1 637.872 6.908  1.867280    0  0.2326642 0.8173077  0.5831520 0.0000000
-#> 2 648.738 3.233  3.167003    0  0.5762447 3.1670035  4.6052728 0.2881224
-#> 3 683.589 4.922  3.603119    0  0.9213167 2.1788067  5.0274321 0.3349094
-#> 4 725.680 3.766  8.688864    0 20.3719930 0.8985184 41.9436036 0.2987096
-#> 5 732.072 6.676  2.607329    0 10.3302850 3.7658400 17.0887197 0.4829391
-#> 6 798.757 3.855 11.003411    0  0.0000000 3.2553045  0.9298415 4.8038945
-#>      Spon1      Gnb4      Nnat      Synpr        Pcp4   Slc17a7       region
-#> 1 0.000000 0.5831520 0.1163321 0.00000000   0.0000000   0.00000 intermediate
-#> 2 0.000000 1.4382693 0.0000000 0.00000000   2.8788811  11.51552 intermediate
-#> 3 3.184799 1.5923993 0.4195846 0.08341139  23.2945270  36.19928 intermediate
-#> 4 6.889438 0.2987096 0.0000000 0.00000000 110.5488291 126.72694 intermediate
-#> 5 2.799962 0.7718887 0.6755722 0.67557215  49.1417696  52.23204 intermediate
-#> 6 1.395622 0.0000000 0.4657801 0.00000000   0.9298415   0.00000 intermediate
-#>     anum section id
-#> 1 123456       1  1
-#> 2 123456       1  2
-#> 3 123456       1  3
-#> 4 123456       1  4
-#> 5 123456       1  5
-#> 6 123456       1  6
-
-#feel free to add extra metadata for your section at this point with dplyr::mutate()
 ```
 
+#### 2b. Combine Multiple Images  
+If you have multiple sections to analyze, read them individually into data frames and then use `ruCombine()` as shown below:  
+  
 ``` r
-####### STEP 2b: COMBINING MULTIPLE SECTIONS #######
-#if you have multiple sections you can save multiple experiments as a data.frame using ruRead()
-#to combine them use: 
-
-combo <- ruCombine(c(data1, data2, data3))
+#combine a list of data frames from ruRead()
+combo <- ruCombine(list(data1, data2, data3))
 ```
 
 ### 3. Create an [mFISH Object](#mfish-objects)
-
+This is a [special class of object](#mfish-objects) that encapsulates both raw and analyzed data as well as important metadata from the analysis. This makes for more reproducible analyses!  
+    
 ``` r
-######### STEP 3: CREATE YOUR OBJECT #########
-#take your individual section or combined dataset and turn it into an mFISH object for analysis
-
+#turn an individual section or combination of sections into an object for analysis
 myobj <- ruMake(mydata)
-#> [1] "Creating object..."
 ```
 
-### Run the Shiny App
-
+### 4. Preview your analysis  
+To "auto-analyze" your data, use `goFISH()`. This function launches a ShinyApp that will allow you to easily test out variable values and visualize your analysis - as well as download `.eps` versions of the figures.  
+  
+__Note: this function works best with a single image or a few combined, however it will begin to get quite slow the more data you put in!__   
+  
+  
 ``` r
-######### STEP 4 VERSION A: "Auto-Analysis" SHINY APP ########
-#for a quick analysis overview to get a feel for what variable values will work best, run the shiny app 
-#you will have an option to save your object as a .RDS file, which you can later load into R and run further plotting, analysis, etc on
-
 #you have optional time-saving arguments that can pre-select the filtering value and number of clusters prior to running the app
 
 goFISH(myobj, filter.by = 'Slc17a7', k = 5)
@@ -174,132 +139,157 @@ goFISH(myobj, filter.by = 'Slc17a7', k = 5)
 #when you are happy with the way your analysis looks, press "Download Object"
 #to read back in your saved .RDS file, simply use:
 myobj <- readRDS(path/to/object)
-
-#you can then skip straight to the plotting steps - or redo other steps if you want
 ```
 
-### OR Manually Analyze
+### 5. Run the Analysis
 
+#### 5a. Filtering Cells  
+  
 ``` r
-######### STEP 4 VERSION B: "Manual-Analysis" #########
-#These steps happen automatically within the Shiny App
-#doing them manually simply gives you more autonomy over the individual steps
-
-### FILTERING
 #here we filter for excitatory cells which are Slc17a7+
 myobj <- ruFilter(myobj, filter.by = 'Slc17a7', threshold = 0.1)
-#> [1] "Filtering data by Slc17a7 at threshold of 0.1..."
-#> [1] "Updating metadata..."
+```
 
-### PREPROCESSING
-#run normalization and PCA (with optional arg to remove autofluorescent cells)
+#### 5b. Preprocessing  
+  
+```r
+#run normalization (with optional arg called remove.outliers to remove autofluorescent cells)
 myobj <- ruProcess(myobj)
-#> [1] "Normalizing data..."
-#> [1] "Running PCA..."
-#> [1] "Updating metadata..."
+```
 
-### RUN UMAP
-#populate attributes with UMAP for plotting
+#### 5c. Dimensionality Reduction  
+  
+```r
+#run a PCA and a UMAP - the values for which are found in myobj@attributes
 myobj <- ruUMAP(myobj)
-#> Warning in if (suppressWarnings(is.na(mFISH@attributes$pca))) {: the condition
-#> has length > 1 and only the first element will be used
-#> [1] "Altering UMAP configurations..."
-#> [1] "Running UMAP..."
-#> [1] "Saving custom configuration..."
+```
 
-### CLUSTER 
+#### 5d. Clustering  
+  
+```r
 #populate metaData with cluster column
 myobj <- ruCluster(myobj, k = 5)
-#> [1] "Clustering..."
 ```
 
-#### Object storage
+### 6. Plotting
+
+#### 6a. Geographic Space
+Plot in X,Y space with `plotSpace()`:
 
 ``` r
-#you can continually re-run these functions until you get an analysis that you are happy with
-#it is HIGHLY SUGGESTED you save your object, this way you can share your data and all of the parameters used to get there
-
-#### SAVE VIA: saveRDS(path, myobj)
-#### READ IN VIA: myobj <- readRDS(path)
-```
-
-### 5. Plotting
-
-#### Geographic Space
-
-``` r
-######### STEP 4: PLOTTING #########
-
-### GEOGRAPHIC SPACE with plotSpace()
-#plot in space - automatically coloured by cluster
+Automatically coloured by cluster
 plotSpace(myobj)
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
-
+  
+  
+  
+  
+Optional argument `group.by` to group by section, animal number, or other variable (eg cluster):  
+  
 ``` r
-#optional args to group by section, or other variable (eg cluster)
 plotSpace(myobj, group.by = 'cluster')
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-2.png" width="100%" />
-
+  
+  
+  
+Optional argument `colour.by` to colour data by gene expression or metadata values:  
+  
 ``` r
 #plot in space but change to a gene or metadata value
 plotSpace(myobj, colour.by = 'Ctgf', include.fil = F)
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-3.png" width="100%" />
-
+  
+  
+  
+  
+Combine multiple arguments to get a better feel for how the data looks:  
+  
 ``` r
 #plot in space with separation by cluster (group.by is useful for viewing multiple sections as well)
 plotSpace(myobj, group.by = 'cluster', colour.by = 'Ctgf')
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-4.png" width="100%" />
-
-#### Dimensionally Reduced Space
-
+  
+  
+  
+   
+   
+#### 6b. Dimensionally Reduced Space
+Plot in UMAP space with `plotDim()`:  
+  
 ``` r
-### DIM REDUCED SPACE with plotDim()
 #auto coloured by cluster
 plotDim(myobj)
 ```
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
-
+  
+  
+  
+This also has the `colour.by` option for gene expression and metadata:  
+  
 ``` r
 #option to colour by gene/metadata 
 plotDim(myobj, colour.by='Ctgf')
 ```
 
 <img src="man/figures/README-unnamed-chunk-7-2.png" width="100%" />
-
-#### Gene Expression Box Plots
-
+  
+  
+  
+  
+  
+#### 6c. Box Plots  
+Plot expression of a gene in a given cluster using `geneBoxPlot()`:  
+  
 ``` r
-### MARKER GENE BOX PLOTS
-
-#Plot a gene's expression across clusters
+#coloured by cluster ID
 geneBoxPlot(myobj, 'Ctgf')
 ```
 
 <img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
-
+  
+  
+  
+  
+Plot expression of all genes in a given cluster with `clusterBoxPlot()`:   
+  
 ``` r
-#Plot the gene expression profile of a specified cluster
+#autogenerated rainbow colouring scheme for genes
 clusterBoxPlot(myobj, clus='5')
 ```
 
 <img src="man/figures/README-unnamed-chunk-8-2.png" width="100%" />
-
+  
+    
+   
+    
+You can also print the expression of *every* gene in *every* cluster with this:      
+    
 ``` r
-#or simply plot the gene expression for every cluster
+#autogenerated rainbow colouring scheme for genes
 clusterBoxPlot(myobj)
 ```
+  
+<img src="man/figures/README-unnamed-chunk-8-3.png" width="100%" />  
+  
 
-<img src="man/figures/README-unnamed-chunk-8-3.png" width="100%" />
-
+#### 7. Object Storage  
+It is **HIGHLY SUGGESTED** that you save your object, this way you can share your data and all of the parameters used to get there in a reproducible manner. You can continually re-run these functions until you get an analysis that you are happy with. Then save and load your data as follows:   
+  
+``` r
+#### SAVE VIA: saveRDS(path, myobj)
+#### READ IN VIA: myobj <- readRDS(path)
+```  
+   
+   
 ## mFISH Objects
 
 RUHi makes use of an `mFISH Object` that encapsulates the many stages of
@@ -323,8 +313,7 @@ accessor (eg: `object@attributes$pca`).
 
 ## Functions
 
-Currently the package has **7 core functions**, **4 plotting
-functions**, and a **Shiny App deployment function**:
+Currently the package has **7 core functions**, **4 plotting functions**, and a **Shiny App deployment function**:
 
 ## Core Functions
 

@@ -4,7 +4,7 @@
 \alias{ruUMAP}
 \title{Run UMAP dimensionality reduction on mFISH object}
 \usage{
-ruUMAP(mFISH, metric = "manhattan", nn = 15, min.dist = 0.1, npc = 8)
+ruUMAP(mFISH, metric = "manhattan", nn = 15, min.dist = 0.1, npc = 1)
 }
 \arguments{
 \item{mFISH}{An mFISH object with preprocessing completed.}
