@@ -1,6 +1,7 @@
-#' Create a box plot for a given gene
-#'
+#' mFISH Gene Box Plot
 #' @author Kaitlin E Sullivan
+#'
+#' @description Create a boxplot denoting expression of a **single gene** across _all clusters_.
 #'
 #' @param mFISH An mFISH object
 #' @param gene Gene name to plot

@@ -2,18 +2,18 @@
 % Please edit documentation in R/ruCombine.R
 \name{ruCombine}
 \alias{ruCombine}
-\title{Create a combined dataframe containing quantified mFISH data}
+\title{mFISH Data Pooling}
 \usage{
 ruCombine(dfs)
 }
 \arguments{
-\item{dfs}{A list of dataframes (from \code{ruRead()} using \code{list(df1,df2,df3)})}
+\item{dfs}{A list of dataframes (from \code{ruRead} using \code{list(df1,df2,df3)})}
 }
 \value{
 A combined dataframe.
 }
 \description{
-Create a combined dataframe containing quantified mFISH data
+Combine \code{ruRead} datatables from multiple mFISH images!
 }
 \author{
 Kaitlin E Sullivan

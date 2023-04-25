@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotSpace.R
 \name{plotSpace}
 \alias{plotSpace}
-\title{Plot spatial location of cells coloured by metadata}
+\title{mFISH Plotting Cells in Native Tissue}
 \usage{
 plotSpace(
   mFISH,
@@ -14,7 +14,7 @@ plotSpace(
 )
 }
 \arguments{
-\item{mFISH}{An mFISH object}
+\item{mFISH}{An mFISH object that has undergone all analysis steps.}
 
 \item{colour.by}{A metadata variable to colour by}
 
@@ -24,11 +24,14 @@ plotSpace(
 
 \item{include.fil}{Logical allowing for filtered cells to appear in grey}
 
-\item{group.by}{A variable to separate plots by (eg: section or anum to view individual slices)}
+\item{group.by}{A variable to separate plots by (eg: section or anum to view individual slices or animals)}
 }
 \value{
 A ggplot showing cells in native space!
 }
 \description{
-Plot spatial location of cells coloured by metadata
+Plot cells in their original X,Y coordinates. Colour according to gene expression or metadata.
+}
+\author{
+Kaitlin E Sullivan
 }

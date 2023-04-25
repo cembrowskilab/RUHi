@@ -2,7 +2,7 @@
 % Please edit documentation in R/ruCluster.R
 \name{ruCluster}
 \alias{ruCluster}
-\title{Cluster an mFISH object}
+\title{mFISH Clustering}
 \usage{
 ruCluster(mFISH, k, dmetric = "euclidean", p = 2)
 }
@@ -19,8 +19,8 @@ ruCluster(mFISH, k, dmetric = "euclidean", p = 2)
 A clustered mFISH object.
 }
 \description{
-Cluster an mFISH object
+Hierarchically cluster an mFISH object. To be used after \code{ruUMAP}.
 }
 \author{
-Kaitlin Sullivan
+Kaitlin E Sullivan
 }

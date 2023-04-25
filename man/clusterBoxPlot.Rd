@@ -2,7 +2,7 @@
 % Please edit documentation in R/clusterBoxPlot.R
 \name{clusterBoxPlot}
 \alias{clusterBoxPlot}
-\title{Create a box plot for a given cluster}
+\title{mFISH Cluster Box Plot}
 \usage{
 clusterBoxPlot(mFISH, clus = "all", metadata = "genes")
 }
@@ -17,7 +17,7 @@ clusterBoxPlot(mFISH, clus = "all", metadata = "genes")
 A box plot showing gene expression per cluster
 }
 \description{
-Create a box plot for a given cluster
+Create a box plot denoting expression of \strong{all genes} in \emph{one or all clusters}.
 }
 \author{
 Kaitlin E Sullivan

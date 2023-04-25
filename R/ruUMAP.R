@@ -1,6 +1,7 @@
-#' Run UMAP dimensionality reduction on mFISH object
-#'
+#' mFISH UMAP Dimensionality Reduction
 #' @author Kaitlin E Sullivan
+#'
+#' @description Run UMAP dimensionality reduction on your mFISH object. To be used after `ruProcess` and before `ruCluster`.
 #'
 #' @param mFISH An mFISH object with preprocessing completed.
 #' @param metric Distance metric for UMAP.
@@ -14,15 +15,21 @@
 #' @export
 #'
 
-ruUMAP <- function(mFISH, metric="manhattan", nn=15, min.dist=0.1, npc=1){
-    #auto generate npcs
-    if(npc <= 1){
-      l <- length(names(mFISH@filteredData))
-      npc <- (l/2)-1
-    }
-
+ruUMAP <- function(mFISH, metric="manhattan", nn=15, min.dist=0.1, npc="auto"){
     #run on PCA
     df <- mFISH@attributes$pca
+
+    #auto generate npcs
+    if(npc == "auto"){
+      sum <- mFISH@attributes$pcaSum
+      if(sum$`Cumulative Proportion`[1]+sum$`Cumulative Proportion`[2]>0.95){
+        pcs <- sum[1:2,]
+      }else{
+        pcs <- dplyr::filter(sum, `Cumulative Proportion`<=0.95)
+      }
+      #save autoselected pcs
+      npc <- nrow(pcs)
+    }
 
     #update umap configuration
     print("Altering UMAP configurations...")
@@ -48,3 +55,5 @@ ruUMAP <- function(mFISH, metric="manhattan", nn=15, min.dist=0.1, npc=1){
     mFISH
 
 }
+
+

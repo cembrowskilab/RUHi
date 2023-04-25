@@ -1,6 +1,7 @@
-#' Select features and filter your mFISH object by a given gene
-#'
+#' mFISH Data Filtering
 #' @author Kaitlin E Sullivan
+#'
+#' @description Filter data for a cell type of choice, plus exclude any non-expressing genes here. To be used after `ruMake` and before `ruProcess`.
 #'
 #' @param mFISH An mFISH object
 #' @param threshold A numeric value to threshold the gene by
@@ -15,6 +16,22 @@
 ruFilter <- function(mFISH, threshold = 0.1, filter.by = NA, exclude = NA){
   #save raw data
   df <- mFISH@rawData
+
+  if(!is.na(exclude[1])){
+    print("Running gene exclusions...")
+    l <- length(exclude)
+    for(i in 1:l){
+      #if(!(exclude %in% names(df))){
+      #  warning(paste("Gene ", exclude[i], " has already been removed via filtering or does not exist in this object. This argument is for removing genes that are not included in the filtering process. Please also check spelling!",
+      #                sep=""))
+      #}
+      #POTENTIAL ROADBLOCK???
+      mFISH@metaData <- dplyr::mutate(mFISH@metaData,
+                                      !!exclude[i] := log1p(df[[exclude[i]]]))
+      df <- dplyr::select(df, -(!!rlang::sym(exclude[i])))
+    }
+  }
+
   #filter by list
     #only run if length > 1
     l <- length(filter.by)
@@ -32,18 +49,7 @@ ruFilter <- function(mFISH, threshold = 0.1, filter.by = NA, exclude = NA){
         df <- dplyr::select(df, -(!!rlang::sym(filter.by[i])))
       }
     }
-    if(!is.na(exclude[1])){
-      print("Running gene exclusions...")
-      l <- length(exclude)
-      for(i in 1:l){
-        if(!(exclude %in% names(df))){
-          warning(paste("Gene ", exclude[i], " has already been removed via filtering or does not exist in this object. This argument is for removing genes that are not included in the filtering process. Please also check spelling!",
-                        sep=""))
-        }
-        #POTENTIAL ROADBLOCK???
-        df <- dplyr::select(df, -(!!rlang::sym(exclude[i])))
-      }
-    }
+
     #populate object with values
     #filtered
     mFISH@filteredData <- df

@@ -7,7 +7,7 @@
 ruMake(df, metadata = NULL)
 }
 \arguments{
-\item{df}{Dataframe from \code{ruRead()} or \code{ruCombine()}.}
+\item{df}{Dataframe from \code{ruRead} or \code{ruCombine}.}
 
 \item{metadata}{Dataframe containing metadata}
 }
@@ -15,7 +15,7 @@ ruMake(df, metadata = NULL)
 An mFISH object.
 }
 \description{
-Create an mFISH object
+Create an mFISH object from a data table created by the function \code{ruRead} and/or \code{ruCombine}. Run \code{ruFilter} next!
 }
 \author{
 Kaitlin E Sullivan

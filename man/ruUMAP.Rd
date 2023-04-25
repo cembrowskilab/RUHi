@@ -2,9 +2,9 @@
 % Please edit documentation in R/ruUMAP.R
 \name{ruUMAP}
 \alias{ruUMAP}
-\title{Run UMAP dimensionality reduction on mFISH object}
+\title{mFISH UMAP Dimensionality Reduction}
 \usage{
-ruUMAP(mFISH, metric = "manhattan", nn = 15, min.dist = 0.1, npc = 1)
+ruUMAP(mFISH, metric = "manhattan", nn = 15, min.dist = 0.1, npc = "auto")
 }
 \arguments{
 \item{mFISH}{An mFISH object with preprocessing completed.}
@@ -21,7 +21,7 @@ ruUMAP(mFISH, metric = "manhattan", nn = 15, min.dist = 0.1, npc = 1)
 An mFISH object with UMAP coordinates populated in the metadata slot.
 }
 \description{
-Run UMAP dimensionality reduction on mFISH object
+Run UMAP dimensionality reduction on your mFISH object. To be used after \code{ruProcess} and before \code{ruCluster}.
 }
 \author{
 Kaitlin E Sullivan

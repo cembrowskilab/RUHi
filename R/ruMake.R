@@ -1,8 +1,9 @@
 #' Create an mFISH object
-#'
 #' @author Kaitlin E Sullivan
 #'
-#' @param df Dataframe from `ruRead()` or `ruCombine()`.
+#' @description Create an mFISH object from a data table created by the function `ruRead` and/or `ruCombine`. Run `ruFilter` next!
+#'
+#' @param df Dataframe from `ruRead` or `ruCombine`.
 # @param filteredData Dataframe containing the filtered and normalized dataset with id number
 #' @param metadata Dataframe containing metadata
 # @param attributes List of attributes used in data analysis: `list(filter.by, thresh, umap_nn, umap_mindist, umap_metric, hclust_k, hclust_metric, hclust_p)`

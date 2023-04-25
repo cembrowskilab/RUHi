@@ -1,6 +1,7 @@
-#' Create a box plot for a given cluster
-#'
+#' mFISH Cluster Box Plot
 #' @author Kaitlin E Sullivan
+#'
+#' @description Create a box plot denoting expression of **all genes** in _one or all clusters_.
 #'
 #' @param mFISH An mFISH object
 #' @param clus Cluster name or number in quotations (or "all" for every cluster)

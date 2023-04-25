@@ -1,8 +1,9 @@
-#' Create a combined dataframe containing quantified mFISH data
-#'
+#' mFISH Data Pooling
 #' @author Kaitlin E Sullivan
 #'
-#' @param dfs A list of dataframes (from `ruRead()` using `list(df1,df2,df3)`)
+#' @description Combine `ruRead` datatables from multiple mFISH images!
+#'
+#' @param dfs A list of dataframes (from `ruRead` using `list(df1,df2,df3)`)
 #' @return A combined dataframe.
 #'
 #' @import dplyr

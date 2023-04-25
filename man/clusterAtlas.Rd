@@ -2,12 +2,12 @@
 % Please edit documentation in R/clusterAtlas.R
 \name{clusterAtlas}
 \alias{clusterAtlas}
-\title{Cluster Atlas}
+\title{mFISH Atlas Clustering}
 \usage{
 clusterAtlas(bins, k, density = 0, include.density = F, normalize = F)
 }
 \arguments{
-\item{bins}{A bin dataframe generated from: createAtlas()}
+\item{bins}{A bin dataframe generated from: \code{createAtlas}}
 
 \item{k}{Number of clusters to create (via hierarchical clustering of binned windows)}
 
@@ -18,8 +18,11 @@ clusterAtlas(bins, k, density = 0, include.density = F, normalize = F)
 \item{normalize}{Set to true if you wish to normalize cell body density.}
 }
 \value{
-A bin dataframe with a cluster column. Can be plotted using plotAtlas()
+A bin dataframe with a cluster column. Can be plotted using \code{plotAtlas}.
 }
 \description{
 A function that creates data-driven anatomical atlas parcellation by taking a binned dataframe from createAtlas() and clusters based on cellular phenotype and/or cellular density.
+}
+\author{
+Kaitlin Sullivan
 }

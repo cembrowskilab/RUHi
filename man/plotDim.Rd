@@ -2,14 +2,14 @@
 % Please edit documentation in R/plotDim.R
 \name{plotDim}
 \alias{plotDim}
-\title{Plot UMAP of mFISH data}
+\title{mFISH UMAP Plot}
 \usage{
 plotDim(mFISH, colour.by = "cluster", size = 0.9, cols = NA)
 }
 \arguments{
-\item{mFISH}{An mFISH object with UMAP coordinates}
+\item{mFISH}{An mFISH object that has undergone all analysis steps}
 
-\item{colour.by}{A metadata variable to colour by}
+\item{colour.by}{A metadata variable to colour by (auto-coloured by cluster).}
 
 \item{size}{Point size}
 
@@ -19,5 +19,8 @@ plotDim(mFISH, colour.by = "cluster", size = 0.9, cols = NA)
 A ggplot showing UMAP space coloured by metadata.
 }
 \description{
-Plot UMAP of mFISH data
+Plot UMAP dimensionality reduction and colour by gene expression or metadata.
+}
+\author{
+Kaitlin E Sullivan
 }

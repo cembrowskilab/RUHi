@@ -2,9 +2,9 @@
 % Please edit documentation in R/goFISH.R
 \name{goFISH}
 \alias{goFISH}
-\title{Launches the Gone mFISHing shiny app}
+\title{Gone mFISHing}
 \usage{
-goFISH(mFISH, filter.by = NA, k = NA)
+goFISH(mFISH, filter.by = NA, k = NA, norm = "PAC")
 }
 \arguments{
 \item{mFISH}{An mFISH object}
@@ -17,7 +17,7 @@ goFISH(mFISH, filter.by = NA, k = NA)
 Launch Gone mFISHing shiny app
 }
 \description{
-Launches the Gone mFISHing shiny app
+Launch a Shiny app for code-free analysis of mFISH data.
 }
 \author{
 Kaitlin E Sullivan

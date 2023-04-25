@@ -2,7 +2,7 @@
 % Please edit documentation in R/ruFilter.R
 \name{ruFilter}
 \alias{ruFilter}
-\title{Select features and filter your mFISH object by a given gene}
+\title{mFISH Data Filtering}
 \usage{
 ruFilter(mFISH, threshold = 0.1, filter.by = NA, exclude = NA)
 }
@@ -19,7 +19,7 @@ ruFilter(mFISH, threshold = 0.1, filter.by = NA, exclude = NA)
 An mFISH object with a populated filteredData section
 }
 \description{
-Select features and filter your mFISH object by a given gene
+Filter data for a cell type of choice, plus exclude any non-expressing genes here. To be used after \code{ruMake} and before \code{ruProcess}.
 }
 \author{
 Kaitlin E Sullivan

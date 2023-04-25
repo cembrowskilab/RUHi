@@ -1,7 +1,10 @@
-#' Plot UMAP of mFISH data
+#' mFISH UMAP Plot
+#' @author Kaitlin E Sullivan
 #'
-#' @param mFISH An mFISH object with UMAP coordinates
-#' @param colour.by A metadata variable to colour by
+#' @description Plot UMAP dimensionality reduction and colour by gene expression or metadata.
+#'
+#' @param mFISH An mFISH object that has undergone all analysis steps
+#' @param colour.by A metadata variable to colour by (auto-coloured by cluster).
 #' @param size Point size
 #' @param cols Vector of colours
 #'

@@ -146,13 +146,20 @@ myobj <- ruFilter(myobj, filter.by = 'Slc17a7', threshold = 0.1)
 #run normalization and PCA (with optional arg to remove autofluorescent cells)
 myobj <- ruProcess(myobj)
 
+#check out the number of PCs to use:
+plotVar(myobj)
+
 ### RUN UMAP
 #populate attributes with UMAP for plotting
-myobj <- ruUMAP(myobj)
+#you can use the optional argument npc to  select more or less PCs
+myobj <- ruUMAP(myobj, npc=6)
 
 ### CLUSTER 
 #populate metaData with cluster column
 myobj <- ruCluster(myobj, k = 5)
+
+#check the dendrogram to see if you agree with number of clusters
+plotDendro(myobj)
 
 ```
 

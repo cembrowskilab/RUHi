@@ -1,6 +1,7 @@
-#' Cluster an mFISH object
+#' mFISH Clustering
+#' @author Kaitlin E Sullivan
 #'
-#' @author Kaitlin Sullivan
+#' @description Hierarchically cluster an mFISH object. To be used after `ruUMAP`.
 #'
 #' @param mFISH An mFISH object
 #' @param k Number of clusters

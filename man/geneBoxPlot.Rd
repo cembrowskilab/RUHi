@@ -2,7 +2,7 @@
 % Please edit documentation in R/geneBoxPlot.R
 \name{geneBoxPlot}
 \alias{geneBoxPlot}
-\title{Create a box plot for a given gene}
+\title{mFISH Gene Box Plot}
 \usage{
 geneBoxPlot(mFISH, gene, group = "cluster")
 }
@@ -17,7 +17,7 @@ geneBoxPlot(mFISH, gene, group = "cluster")
 A box plot showing gene expression
 }
 \description{
-Create a box plot for a given gene
+Create a boxplot denoting expression of a \strong{single gene} across \emph{all clusters}.
 }
 \author{
 Kaitlin E Sullivan
