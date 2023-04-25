@@ -131,7 +131,7 @@ myobj <- ruMake(mydata)
 ### 4. Preview your analysis  
 To "auto-analyze" your data, use `goFISH()`. This function launches a ShinyApp that will allow you to easily test out variable values and visualize your analysis - as well as download `.eps` versions of the figures.  
   
-__Note: this function works best with a single image or a few combined, however it will begin to get quite slow the more data you put in!__   
+__Note: this function works best with a single image or a few combined, however it will begin to get quite slow the more data you put in!__ The number of principle components used (npc) will automatically be half the number of input genes and not optomized as in Section 5b.   
   
   
 ``` r
