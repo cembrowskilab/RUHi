@@ -111,7 +111,7 @@ goFISH <- function(mFISH, filter.by=NA, k=NA, norm="PAC"){
                           "Number of Principle Components to use:",
                           min = 2,
                           max = length(filgenes)-1,
-                          value = (length(filgenes)/2)-1,
+                          value = round((length(filgenes)/2)-1),
                           step = 1
                         ))
                       ),
