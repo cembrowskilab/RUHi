@@ -4,6 +4,9 @@
 
 #### R-based Utilities for HiPlex
 
+##### Author: [**Kaitlin Sullivan**](https://github.com/cembrowskilab/RUHi)
+Please contact Kaitlin about usage and credit.
+
 <!-- badges: start -->
 
 [![Lifecycle:
