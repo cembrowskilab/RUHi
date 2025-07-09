@@ -9,7 +9,7 @@ ruProcess(mFISH, norm = "PAC", remove.outliers = F, outlier.thresh = c(1, 11))
 \arguments{
 \item{mFISH}{An mFISH object containing raw or filtered data}
 
-\item{norm}{A string declaring "PAC" or "maxVal". Default is "PAC" as "maxval" is only useful in a handful of cases. See documentation.}
+\item{norm}{A string declaring "log", "PAC", or "maxVal". Default is "PAC" but "log is also highly recommended. "maxval" is only useful in a handful of cases - namely with few marker genes. See documentation.}
 
 \item{remove.outliers}{A logical value for removing "outliers" (eg: autofluorescent cells positive for all genes)}
 

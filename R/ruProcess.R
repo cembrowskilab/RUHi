@@ -74,6 +74,13 @@ ruProcess <- function(mFISH, norm="PAC", remove.outliers=F, outlier.thresh=c(1,1
     df <- df*(100)
   }
 
+  if(norm=="log"){
+    # part 2: original
+    # expression per cell adds to equal 100
+    #normalize to PAC
+    df <- log2(df)
+  }
+
   #remove NAs
   df <- dplyr::mutate(df, id = ids$id)
   df <- stats::na.omit(df)
