@@ -12,6 +12,8 @@ goFISH(mFISH, filter.by = NA, k = NA, norm = "PAC")
 \item{filter.by}{A vector of strings or single string value of a gene to filter the data by}
 
 \item{k}{A numeric value denoting number of clusters to input}
+
+\item{norm}{Normalization method of "PAC" or "log"}
 }
 \value{
 Launch Gone mFISHing shiny app

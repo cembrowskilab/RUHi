@@ -75,10 +75,10 @@ ruProcess <- function(mFISH, norm="PAC", remove.outliers=F, outlier.thresh=c(1,1
   }
 
   if(norm=="log"){
-    # part 2: original
-    # expression per cell adds to equal 100
+    # part 3: log
+    # log normalize
     #normalize to PAC
-    df <- log2(df)
+    df <- log2(1+df)
   }
 
   #remove NAs
@@ -124,6 +124,16 @@ ruProcess <- function(mFISH, norm="PAC", remove.outliers=F, outlier.thresh=c(1,1
   #save w ids
   df <- dplyr::mutate(df, id = ids$id)
   mFISH@filteredData <- df
+
+
+  #filter for PCs providing most variance
+    if(sum$`Cumulative Proportion`[1]+sum$`Cumulative Proportion`[2]>0.95){
+      df <- sum[1:2,]
+    }else{
+      df <- dplyr::filter(sum, `Cumulative Proportion`<=0.95)
+    }
+    #save to attributes
+    mFISH@attributes$npc <- nrow(df)
 
   #return object
   mFISH

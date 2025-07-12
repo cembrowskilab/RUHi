@@ -23,26 +23,12 @@ ruRead <- function(dir, region = NA, anum = NA, section=NA) {
   geneData <- utils::read.csv(paste(dir, .Platform$file.sep, filelist[i], sep = ""))
   hiPlex <- dplyr::select(geneData, X, Y)
 
-  #linear or non linear
-  if(grepl("_NL.tif", filelist[1])){
-    #current code name - assumes NL too
-    del <- 45
-  }
-  else if(grepl("rigid", filelist[1])){
-    #long form name (old code)
-    del <- 62
-  }
-  else{
-    #3-4plex, no registration
-    del <- 23
-  }
-
 
 
   while(i<(length(filelist)+1)){
     #extract gene name from file name
-    cur <- filelist[i]
-    geneName <- substr(cur, 8, (nchar(cur)-del))
+    getGene <- strsplit(filelist[i], "_")[[1]]
+    geneName <- substring(getGene[3], 0, nchar(getGene[3])-4)
     geneData <- utils::read.csv(paste(dir, .Platform$file.sep, filelist[i], sep = ""))
 
     #User-selected filtering of real vs unreal signal

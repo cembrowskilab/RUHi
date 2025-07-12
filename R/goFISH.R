@@ -6,6 +6,7 @@
 #' @param mFISH An mFISH object
 #' @param filter.by A vector of strings or single string value of a gene to filter the data by
 #' @param k A numeric value denoting number of clusters to input
+#' @param norm Normalization method of "PAC" or "log"
 #'
 #' @return Launch Gone mFISHing shiny app
 #'
@@ -328,9 +329,6 @@ goFISH <- function(mFISH, filter.by=NA, k=NA, norm="PAC"){
 
 #reactive metadata for object building
      metaReact <- shiny::reactive({
-       #add clusters
-       cc <- clusDat()
-       metaReact <- dplyr::mutate(meta, cluster = cc$cluster)
 
        #create the fil variable
        fils <- filIds()
@@ -344,8 +342,11 @@ goFISH <- function(mFISH, filter.by=NA, k=NA, norm="PAC"){
        print("Updating metadata...")
        b <- dplyr::arrange(b, id)
 
-       #add fil
-       metaReact <- dplyr::mutate(meta, fil = b$fil)
+
+       #add clusters and fil
+       cc <- clusDat()
+       metaReact <- dplyr::mutate(meta, cluster = cc,
+                                  fil=b$fil)
 
        metaReact
      })
@@ -459,7 +460,8 @@ goFISH <- function(mFISH, filter.by=NA, k=NA, norm="PAC"){
 
         mu <- umap::umap(df, config = config)
 
-        mu <- mu$layout
+        mu <- data.frame("UMAP_1"=mu$layout[,1],
+                         "UMAP_2"=mu$layout[,2])
 
         #mu <- RUHi::ruUMAP(pca, metric = input$metric, nn = input$nn,
                            #min.dist = input$mindist, npc = input$npcs)
@@ -519,7 +521,7 @@ goFISH <- function(mFISH, filter.by=NA, k=NA, norm="PAC"){
         clusDat <- dplyr::arrange(clusDat, id)
 
         #return
-        clusDat
+        clusDat$cluster
       })
 
       #SPATIAL COORDS FOR FILTERED DATA

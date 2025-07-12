@@ -1,16 +1,21 @@
 Package: RUHi
 Title: R-based Utilities for Hiplex
-Version: 0.0.0.9000
+Version: 2.5.0
 Authors@R: 
-    person(given = "Kaitlin",
+    c(person(given = "Kaitlin",
            family = "Sullivan",
-           role = c("aut", "cre"),
+           role = c("cre", "aut"),
            email = "kaitlin.sullivan@ubc.ca",
-           comment = c(ORCID = "0000-0001-8043-7111"))
+           comment = c(ORCID = "0000-0001-8043-7111")), person(given = "Margarita",
+           family = "Kapustina",
+           role = c("ctb","aut"),
+           email = "margokap@student.ubc.ca",
+           comment = c(ORCID = "0009-0000-8776-5302")))
 Description: This package allows for the analysis and visualization of multiplexed FISH data, as well as the intergration of this data with scRNA-seq data.
 License: GPL (>= 3) + file LICENSE
 Imports: 
     testthat,
+    dendextend,
     shiny,
     Seurat,
     shinyWidgets,
@@ -33,6 +38,6 @@ Imports:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 URL: https://github.com/kaitsull/RUHi
 BugReports: https://github.com/kaitsull/RUHi/issues
