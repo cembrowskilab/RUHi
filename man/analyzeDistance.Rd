@@ -19,7 +19,7 @@ analyzeDistance(
 
 \item{highlight_cluster.1}{Specify identity of first cluster to highlight when defining boundary, to use as a landmark if needed (example: highlight_cluster.1 = 1).}
 
-\item{highlight_cluster.2}{Specify identity of second cluster to highlight when defining boundary, to use as a landmark if needed (example: highlight_cluster.1 = 2).}
+\item{highlight_cluster.2}{Specify identity of second cluster to highlight when defining boundary, to use as a landmark if needed (example: highlight_cluster.2 = 2).}
 
 \item{highlight_colour}{Specify colour to highlight cells belonging to selected cluster in 'highlight_cluster.1'. Default colour is black}
 }
