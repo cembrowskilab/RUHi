@@ -1,4 +1,4 @@
-#' Get cell coordinates, gene expression, cluster id and metadata information from an mFISH object, and optionally rotate cell XY coordinates.
+#' Get cell coordinates, cluster id and metadata information from an mFISH object, and optionally rotate cell XY coordinates.
 #' @author Margarita Kapustina
 #'
 #' @description Create a dataframe with cell ID, coordinates, cluster IDs and metadata information from an mFISH object for an individual slice. Use this function after clustering your mFISH object.
@@ -8,7 +8,7 @@
 #' @param rotate_coords Option to adjust the angle of your cell coordinates (TRUE, FALSE)
 #' @param theta_deg Specify the degrees you wish to rotate your section by
 #'
-#' @return A dataframe with XY coordinates, cell id, gene expression, cluster ID, and metadata (cell id, anum, etc.) for a single mFISH object section. If rotate_coords = T, the adjusted XY coordinates will be stored in your dataframe output.
+#' @return A dataframe with XY coordinates, cell id, cluster ID, and metadata (cell id, anum, etc.) for a single mFISH object section. If rotate_coords = T, the adjusted XY coordinates will be stored in your dataframe output.
 #'
 #' @import ggplot2
 #'
