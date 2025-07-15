@@ -2,7 +2,7 @@
 % Please edit documentation in R/getCoords.R
 \name{getCoords}
 \alias{getCoords}
-\title{Get cell coordinates, gene expression, cluster id and metadata information from an mFISH object, and optionally rotate cell XY coordinates.}
+\title{Get cell coordinates, cluster id and metadata information from an mFISH object, and optionally rotate cell XY coordinates.}
 \usage{
 getCoords(original_mfish_obj, section_id, rotate_coords = FALSE, theta_deg = 0)
 }
@@ -16,7 +16,7 @@ getCoords(original_mfish_obj, section_id, rotate_coords = FALSE, theta_deg = 0)
 \item{theta_deg}{Specify the degrees you wish to rotate your section by}
 }
 \value{
-A dataframe with XY coordinates, cell id, gene expression, cluster ID, and metadata (cell id, anum, etc.) for a single mFISH object section. If rotate_coords = T, the adjusted XY coordinates will be stored in your dataframe output.
+A dataframe with XY coordinates, cell id, cluster ID, and metadata (cell id, anum, etc.) for a single mFISH object section. If rotate_coords = T, the adjusted XY coordinates will be stored in your dataframe output.
 }
 \description{
 Create a dataframe with cell ID, coordinates, cluster IDs and metadata information from an mFISH object for an individual slice. Use this function after clustering your mFISH object.
