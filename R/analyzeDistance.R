@@ -6,7 +6,7 @@
 #' @param SectionName Name of your section (example: 'section7'), used for plotting titles and saving filenames
 #' @param coord_data Coordinate section data extracted from mFISH object using getCoords().
 #' @param highlight_cluster.1 Specify identity of first cluster to highlight when defining boundary, to use as a landmark if needed (example: highlight_cluster.1 = 1).
-#' @param highlight_cluster.2 Specify identity of second cluster to highlight when defining boundary, to use as a landmark if needed (example: highlight_cluster.1 = 2).
+#' @param highlight_cluster.2 Specify identity of second cluster to highlight when defining boundary, to use as a landmark if needed (example: highlight_cluster.2 = 2).
 #' @param highlight_colour Specify colour to highlight cells belonging to selected cluster in 'highlight_cluster.1'. Default colour is black
 #'
 #' @return A dataframe with cell ID, coordinates, cluster ID, distance along and distance away from your defined boundary. Distance metrics are available as raw (microns) and normalized (0-1) outputs.
