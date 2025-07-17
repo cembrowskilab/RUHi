@@ -5,7 +5,7 @@
 #### R-based Utilities for HiPlex
 
 ##### AUTHOR: [Kaitlin Sullivan](https://github.com/kaitsull) (UBC) _2019-2025_ 
-##### TECHNICAL CONTACT & CONTRIBUTER: [Margo Kapustina](https://github.com/MargoKapustina) (UBC) _2025-Present_ 
+##### TECHNICAL CONTACT & CONTRIBUTER: [Margarita Kapustina](https://github.com/MargoKapustina) (UBC) _2025-Present_ 
 
 <!-- badges: start -->
 
@@ -332,7 +332,7 @@ data*
 - `@metaData`: *A data frame containing metadata for each cell*  
 - `@attributes`: *A list containing all of the analysis values utilized*
 
-![](inst/extdata/mFISH.png)
+![](inst/extdata/mFISH_2025.png)
 
 Each core function within the package interacts with the elements of the
 object so you don’t have to.  
